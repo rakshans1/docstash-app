@@ -12,9 +12,7 @@ class App extends React.Component {
   }
   componentDidMount() {
     const { dispatch } = this.props;
-    AsyncStorage.clear();
     AsyncStorage.getItem('token', (err, data) => {
-      console.log(data);
       if (data !== null ) dispatch(loginUserByToken());
     });
   }
@@ -25,7 +23,7 @@ class App extends React.Component {
     }
 }
 App.propTypes = {
-  // dispatch: PropTypes.function
+  dispatch: PropTypes.func
 }
 const styles=  StyleSheet.create({
   container: {

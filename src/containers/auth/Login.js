@@ -1,8 +1,6 @@
-import React from 'react';
+import React, { PropTypes} from 'react';
 import LoginScene from '../../components/auth/LoginScene';
 import { connect } from 'react-redux';
-import {bindActionCreators} from 'redux';
-import { Actions } from 'react-native-router-flux';
 import { signinUser } from '../../actions/authActions';
 import { ToastAndroid } from 'react-native';
 
@@ -27,8 +25,10 @@ class Login extends React.Component {
   }
 
   loginUser() {
-      if (this.validateEmail(this.state.email)){
-        ToastAndroid.show('Bad Login Info', ToastAndroid.LONG)
+      if (!this.validateEmail(this.state.email)){
+        ToastAndroid.show('Email Invalid', ToastAndroid.LONG)
+      } else if (this.state.password.length < 8) {
+        ToastAndroid.show('Password must be greater than 8 digit', ToastAndroid.LONG)
       } else {
       let data = {
             email: this.state.email,
@@ -49,6 +49,9 @@ class Login extends React.Component {
   }
 }
 
+Login.propTypes  = {
+  dispatch: PropTypes.func
+}
 function mapStateToProps(state) {
   return{ errorMessage: state.auth.error };
 }

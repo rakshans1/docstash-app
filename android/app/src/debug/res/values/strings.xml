@@ -1,0 +1,5 @@
+<resources>
+    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">vJFLlkCv7CclO_H5fiYFYMHnqv3mVJ9xGzf3W</string>
+
+    <string name="app_name">Docstash.debug</string>
+</resources>

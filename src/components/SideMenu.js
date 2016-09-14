@@ -8,11 +8,11 @@ class SideMenu extends React.Component {
       render() {
         const list = [
       {
-        title: 'Appointments',
+        title: 'Library',
         icon: 'av-timer'
       },
       {
-        title: 'Trips',
+        title: 'Music',
         icon: 'flight-takeoff'
       }
     ]

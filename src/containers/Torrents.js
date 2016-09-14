@@ -11,7 +11,7 @@ class Torrent extends React.Component {
 const styles =  StyleSheet.create({
   container: {
     flex: 1,
-    color: "#000"
+    color: "#fff"
   }
 });
 export default Torrent

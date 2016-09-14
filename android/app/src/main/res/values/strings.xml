@@ -1,4 +1,5 @@
 <resources>
+    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">3sKsKII-6YYrwLQ5q2N393K9buJtVJ9xGzf3W</string>
 
     <string name="app_name">Docstash</string>
 </resources>
