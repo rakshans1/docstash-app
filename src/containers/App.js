@@ -1,21 +1,32 @@
-import React, { Component } from 'react';
-import { StyleSheet,StatusBar } from 'react-native';
-import { Router, Reducer } from 'react-native-router-flux'
-import { connect } from 'react-redux';
+import React, { PropTypes } from 'react';
+import { StyleSheet,StatusBar, AsyncStorage } from 'react-native';
+import { Router } from 'react-native-router-flux';
 import { scenes } from '../scenes';
+import { connect } from 'react-redux';
+import { loginUserByToken } from '../actions/authActions';
 
-class App extends Component {
+class App extends React.Component {
   constructor() {
     super();
     StatusBar.setBackgroundColor('#000', true);
   }
-  render() {
-    return (
-      <Router sceneStyle={styles.container} scenes={scenes} />
-    );
+  componentDidMount() {
+    const { dispatch } = this.props;
+    AsyncStorage.clear();
+    AsyncStorage.getItem('token', (err, data) => {
+      console.log(data);
+      if (data !== null ) dispatch(loginUserByToken());
+    });
   }
+  render() {
+      return (
+        <Router sceneStyle={styles.container} scenes={scenes} />
+      );
+    }
 }
-
+App.propTypes = {
+  // dispatch: PropTypes.function
+}
 const styles=  StyleSheet.create({
   container: {
     flex:1,
@@ -23,4 +34,8 @@ const styles=  StyleSheet.create({
   },
 });
 
-export default App;
+function mapStateToProps(state) {
+  return {};
+}
+
+export default connect(mapStateToProps)(App);

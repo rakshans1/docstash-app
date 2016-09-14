@@ -13,9 +13,9 @@ class RegisterScene extends React.Component {
         <FormLabel labelStyle={styles.label}>Email</FormLabel>
         <FormInput underlineColorAndroid="#007ee5" onChangeText={(value) => onFieldChange('email',value)} value={email}/>
         <FormLabel labelStyle={styles.label}>Password</FormLabel>
-        <FormInput underlineColorAndroid="#007ee5" onChangeText={(value) => onFieldChange('password',value)} value={password}/>
+        <FormInput secureTextEntry={true} underlineColorAndroid="#007ee5" onChangeText={(value) => onFieldChange('password',value)} value={password}/>
         <FormLabel labelStyle={styles.label}>Confirm Password</FormLabel>
-        <FormInput  underlineColorAndroid="#007ee5" onChangeText={(value) => onFieldChange('passwordConfirmation',value)} value={passwordConfirmation}/>
+        <FormInput  secureTextEntry={true} underlineColorAndroid="#007ee5" onChangeText={(value) => onFieldChange('passwordConfirmation',value)} value={passwordConfirmation}/>
         <Button raised title="SIGN UP" buttonStyle={styles.button} onPress={()=> registerUser()}/>
         <View style={styles.inline}>
           <Text style={styles.already}>Already have an account?</Text>

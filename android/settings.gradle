@@ -1,4 +1,4 @@
-rootProject.name = 'docstash'
+rootProject.name = 'Docstash'
 
 include ':app'
 include ':react-native-vector-icons'

@@ -1,11 +1,5 @@
-import React, { Component } from 'react';
+import { AppRegistry } from 'react-native';
 import Root from './src/root';
-import {
-  AppRegistry,
-} from 'react-native';
 
 
-
-
-
-AppRegistry.registerComponent('docstash', () => Root);
+AppRegistry.registerComponent('Docstash', () => Root);

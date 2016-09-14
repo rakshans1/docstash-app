@@ -5,13 +5,14 @@ import { Actions } from 'react-native-router-flux';
 
 class LoginScene extends React.Component {
   render () {
+    const { email, password, onFieldChange, loginUser } = this.props;
     return (
       <View style={styles.container}>
         <FormLabel labelStyle={styles.label}>Email</FormLabel>
-        <FormInput underlineColorAndroid="#007ee5"/>
+        <FormInput keyboardType='email-address' underlineColorAndroid="#007ee5" onChangeText={(value) => onFieldChange('email',value)} value={email}/>
         <FormLabel labelStyle={styles.label}>Password</FormLabel>
-        <FormInput underlineColorAndroid="#007ee5"/>
-        <Button raised title="LOGIN" buttonStyle={styles.button} />
+        <FormInput  secureTextEntry={true} underlineColorAndroid="#007ee5" onChangeText={(value) => onFieldChange('password',value)} value={password}/>
+        <Button raised title="LOGIN" buttonStyle={styles.button} onPress={()=>loginUser()}/>
         <View style={styles.inline}>
           <Text style={styles.already}>Dont have an account?</Text>
           <Text style={styles.signin} onPress={()=>Actions.register()}>Register</Text>
