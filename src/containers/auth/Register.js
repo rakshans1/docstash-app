@@ -41,20 +41,23 @@ class Register extends React.Component {
   }
 
   render() {
+    const { loading } = this.props;
     return (
       <RegisterScene
         {...this.state}
         onFieldChange={this.onFieldChange}
         registerUser={this.registerUser}
+        loading={loading}
       />
     );
   }
 }
 Register.propTypes  = {
-  dispatch: PropTypes.func
+  dispatch: PropTypes.func,
+  loading: PropTypes.number
 }
 function mapStateToProps(state) {
-  return{ errorMessage: state.auth.error };
+  return{ loading : state.pendingTasks };
 }
 
 export default connect(mapStateToProps)(Register);

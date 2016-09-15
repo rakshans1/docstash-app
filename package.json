@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "build": "cd android && ./gradlew assembleRelease",
-    "push": "code-push release-react Docstash android"
+    "push": "code-push release-react Docstash android -d Production --mandatory true"
   },
   "dependencies": {
     "axios": "^0.14.0",
@@ -18,6 +18,8 @@
     "react-native-vector-icons": "^2.1.0",
     "react-redux": "^4.4.5",
     "redux": "^3.6.0",
+    "redux-storage": "^4.1.1",
+    "redux-storage-engine-reactnativeasyncstorage": "^1.0.2",
     "redux-thunk": "^2.1.0"
   },
   "devDependencies": {

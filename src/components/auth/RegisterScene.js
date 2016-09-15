@@ -1,13 +1,19 @@
 import React from 'react';
-import {  StyleSheet, Text, View } from 'react-native';
+import {  StatusBar,StyleSheet, Text, View } from 'react-native';
 import { FormLabel, FormInput, Button } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
+import LoadingIndicator from '../LoadingIndicator';
 
 class RegisterScene extends React.Component {
+  constructor(props) {
+    super(props)
+    StatusBar.setBackgroundColor('#0476D3', true);
+  }
   render () {
-     const { name,email,password,passwordConfirmation,onFieldChange, registerUser } = this.props;
+     const { name,email,password,passwordConfirmation,onFieldChange, registerUser, loading } = this.props;
     return (
       <View style={styles.container}>
+      {loading > 0 && <LoadingIndicator />}
         <FormLabel labelStyle={styles.label} >Name</FormLabel>
         <FormInput inputStyle={styles.textInput} underlineColorAndroid="#007ee5" onChangeText={(value) => onFieldChange('name',value)} value={name}/>
         <FormLabel labelStyle={styles.label}>Email</FormLabel>
@@ -19,7 +25,7 @@ class RegisterScene extends React.Component {
         <Button raised title="SIGN UP" buttonStyle={styles.button} onPress={()=> registerUser()}/>
         <View style={styles.inline}>
           <Text style={styles.already}>Already have an account?</Text>
-          <Text style={styles.signin} onPress={()=>Actions.login()}>Sign in</Text>
+          <Text style={styles.signin} onPress={()=>Actions.login({type: 'replace'})}>Sign in</Text>
         </View>
       </View>
     );
@@ -29,7 +35,7 @@ class RegisterScene extends React.Component {
 const styles = StyleSheet.create({
   container: {
     padding: 10,
-    marginTop: 30
+    marginTop: 50
   },
   label: {
     fontSize: 14,

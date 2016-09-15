@@ -1,24 +1,23 @@
 import React, { PropTypes } from 'react';
-import { StyleSheet,StatusBar, AsyncStorage } from 'react-native';
+import { StyleSheet,StatusBar, View } from 'react-native';
 import { Router } from 'react-native-router-flux';
-import { scenes } from '../scenes';
+import { sceneslogin, sceneslogout } from '../scenes';
 import { connect } from 'react-redux';
-import { loginUserByToken } from '../actions/authActions';
 
 class App extends React.Component {
-  constructor() {
-    super();
-    StatusBar.setBackgroundColor('#000', true);
-  }
-  componentDidMount() {
-    const { dispatch } = this.props;
-    AsyncStorage.getItem('token', (err, data) => {
-      if (data !== null ) dispatch(loginUserByToken());
-    });
+  constructor(props) {
+    super(props);
+    StatusBar.setBackgroundColor('#0476D3', true);
   }
   render() {
+    const { isAuthenticated } = this.props;
+      if (isAuthenticated) {
+        return <Router sceneStyle={styles.container} scenes={sceneslogin} />
+      }
       return (
-        <Router sceneStyle={styles.container} scenes={scenes} />
+        <View style={styles.container}>
+          <Router scenes={sceneslogout} />
+        </View>
       );
     }
 }
@@ -32,8 +31,14 @@ const styles=  StyleSheet.create({
   },
 });
 
+App.propTypes = {
+  isAuthenticated: PropTypes.bool
+}
+
 function mapStateToProps(state) {
-  return {};
+  return {
+    isAuthenticated: state.auth.authenticated
+  };
 }
 
 export default connect(mapStateToProps)(App);

@@ -39,21 +39,24 @@ class Login extends React.Component {
   }
 
   render() {
+    const { loading } = this.props;
     return (
       <LoginScene
         {...this.state}
         loginUser={this.loginUser}
         onFieldChange={this.onFieldChange}
+        loading={loading}
       />
     );
   }
 }
 
 Login.propTypes  = {
-  dispatch: PropTypes.func
+  dispatch: PropTypes.func,
+  loading: PropTypes.number
 }
 function mapStateToProps(state) {
-  return{ errorMessage: state.auth.error };
+  return{ loading : state.pendingTasks };
 }
 
 export default connect(mapStateToProps)(Login);

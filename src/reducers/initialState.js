@@ -1,6 +1,9 @@
 export default  {
   pendingTask: 0,
-  authenticated: false,
+  auth:{
+    authenticated: false,
+    token: '',
+  },
   modal: false,
   user:{
     name: '',

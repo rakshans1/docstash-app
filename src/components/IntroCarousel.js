@@ -4,6 +4,10 @@ import { Button } from 'react-native-elements'
 import { Actions } from 'react-native-router-flux';
 
 class IntroCarousel extends React.Component {
+  constructor(props) {
+    super(props);
+    StatusBar.setBackgroundColor('#000', true);
+  }
   render() {
     return (
       <View style={styles.container}>

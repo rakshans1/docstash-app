@@ -1,11 +1,26 @@
 import {createStore, applyMiddleware} from 'redux';
-import rootReducer from '../reducers';
+import reducers from '../reducers';
 import thunk from 'redux-thunk';
+import * as storage from 'redux-storage'
+import createEngine from 'redux-storage-engine-reactnativeasyncstorage';
 
-export default function configureStore(initialState) {
-  return createStore(
+
+
+export default function configureStore(onComplete) {
+
+  const rootReducer = storage.reducer(reducers);
+  const engine = createEngine('my-save-key');
+  const storeMiddleware = storage.createMiddleware(engine);
+
+  let store =  createStore(
     rootReducer,
-    initialState,
-    applyMiddleware(thunk)
+    applyMiddleware(thunk, storeMiddleware)
   );
+
+  const load = storage.createLoader(engine);
+  load(store)
+  .then(onComplete)
+  .catch(() => console.log('Failed to load previous state'));
+
+  return store;
 }

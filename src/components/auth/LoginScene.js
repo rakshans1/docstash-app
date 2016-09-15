@@ -1,21 +1,27 @@
 import React from 'react';
-import {  StyleSheet, Text, View } from 'react-native';
+import {  StyleSheet, Text, View,StatusBar } from 'react-native';
 import { FormLabel, FormInput, Button } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
+import LoadingIndicator from '../LoadingIndicator';
 
 class LoginScene extends React.Component {
+  constructor(props) {
+    super(props)
+    StatusBar.setBackgroundColor('#0476D3', true);
+  }
   render () {
-    const { email, password, onFieldChange, loginUser } = this.props;
+    const { email, password, onFieldChange, loginUser, loading } = this.props;
     return (
       <View style={styles.container}>
+      {loading > 0 && <LoadingIndicator />}
         <FormLabel labelStyle={styles.label}>Email</FormLabel>
-        <FormInput keyboardType='email-address' underlineColorAndroid="#007ee5" onChangeText={(value) => onFieldChange('email',value)} value={email}/>
+        <FormInput keyboardType="email-address" underlineColorAndroid="#007ee5" onChangeText={(value) => onFieldChange('email',value)} value={email}/>
         <FormLabel labelStyle={styles.label}>Password</FormLabel>
         <FormInput  secureTextEntry={true} underlineColorAndroid="#007ee5" onChangeText={(value) => onFieldChange('password',value)} value={password}/>
-        <Button raised title="LOGIN" buttonStyle={styles.button} onPress={()=>loginUser()}/>
+        <Button raised title="LOGIN" buttonStyle={styles.button} onPress={()=>loginUser()} />
         <View style={styles.inline}>
           <Text style={styles.already}>Dont have an account?</Text>
-          <Text style={styles.signin} onPress={()=>Actions.register()}>Register</Text>
+          <Text style={styles.signin} onPress={()=>Actions.register({type: 'replace'})}>Register</Text>
         </View>
       </View>
     );
@@ -25,7 +31,7 @@ class LoginScene extends React.Component {
 const styles = StyleSheet.create({
   container: {
     padding: 10,
-    marginTop: 30
+    marginTop: 50
   },
   label: {
     fontSize: 14,
