@@ -1,11 +1,12 @@
 {
   "name": "Docstash",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "build": "cd android && ./gradlew assembleRelease",
-    "push": "code-push release-react Docstash android -d Production --mandatory true"
+    "push": "code-push release-react Docstash android -d Production --mandatory true",
+    "list": "code-push deployment ls Docstash -k"
   },
   "dependencies": {
     "axios": "^0.14.0",

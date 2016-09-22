@@ -1,7 +1,8 @@
-import React from 'react';
-import SideMenu from './SideMenu';
+import React, {PropTypes} from 'react';
+import SideMenu from '../components/SideMenu';
 import Drawer from 'react-native-drawer';
 import {DefaultRenderer} from "react-native-router-flux";
+import { connect } from 'react-redux';
 
 class NavigationDrawer extends React.Component {
   render() {
@@ -10,7 +11,7 @@ class NavigationDrawer extends React.Component {
       <Drawer
         ref="navigation"
         type="overlay"
-        content={<SideMenu />}
+        content={<SideMenu user={this.props.user}/>}
         tapToClose={true}
         acceptPan={true}
         styles={drawerStyles}
@@ -33,4 +34,13 @@ const drawerStyles = {
     shadowRadius: 3
   }
 }
-export default NavigationDrawer
+
+NavigationDrawer.propTypes = {
+  user: PropTypes.object.isRequired,
+};
+
+function mapStateToProps(state) {
+  return{ user: state.user };
+}
+
+export default connect(mapStateToProps)(NavigationDrawer);

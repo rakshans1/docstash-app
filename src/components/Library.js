@@ -1,10 +1,14 @@
 import React from 'react'
-import { Text, StyleSheet } from 'react-native';
+import { View, Linking, Text, StyleSheet } from 'react-native';
 
 class Library extends React.Component {
   render() {
     return(
-      <Text style={styles.container}>Docstash app will update soon</Text>
+      <View>
+        <Text style={styles.container}>Docstash New Version Available</Text>
+        <Text style={{color: 'blue', textAlign: 'center', fontSize: 20 }}
+              onPress={() => Linking.openURL('http://google.com')}>Download Here</Text>
+      </View>
     );
   }
 }

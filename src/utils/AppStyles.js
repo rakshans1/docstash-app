@@ -10,5 +10,14 @@ export const APP_STYLES =  {
   navigationBarStyle:{
     backgroundColor: APP_COLOR,
     alignItems: 'flex-start'
+  },
+  tabBarStyle: {
+    backgroundColor: '#fff',
+    elevation: 25,
+    height:50
+  },
+  tabBarSelectedItemStyle:{
+    backgroundColor: '#fff',
+    height:50
   }
 };

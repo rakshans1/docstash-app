@@ -9,7 +9,7 @@ import createEngine from 'redux-storage-engine-reactnativeasyncstorage';
 export default function configureStore(onComplete) {
 
   const rootReducer = storage.reducer(reducers);
-  const engine = createEngine('my-save-key');
+  const engine = createEngine('Docstash');
   const storeMiddleware = storage.createMiddleware(engine);
 
   let store =  createStore(
