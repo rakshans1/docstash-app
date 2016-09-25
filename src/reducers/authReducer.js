@@ -11,7 +11,7 @@ export default function(state =  initialState.auth, action) {
 
     case types.UNAUTH_USER_SUCCESS:
     return Object.assign({}, state, {
-         auth: {authenticated: false, token: ''}
+        authenticated: false, token: ''
     });
     default:
         return state;

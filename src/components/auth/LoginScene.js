@@ -1,6 +1,6 @@
 import React from 'react';
 import {  StyleSheet, Text, View,StatusBar } from 'react-native';
-import { FormLabel, FormInput, Button } from 'react-native-elements';
+import { FormLabel, FormInput, Button, SocialIcon } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
 import LoadingIndicator from '../LoadingIndicator';
 
@@ -10,7 +10,7 @@ class LoginScene extends React.Component {
     StatusBar.setBackgroundColor('#0476D3', true);
   }
   render () {
-    const { email, password, onFieldChange, loginUser, loading } = this.props;
+    const { email, password, onFieldChange, loginUser, socialLogin, loading } = this.props;
     return (
       <View style={styles.container}>
       {loading > 0 && <LoadingIndicator />}
@@ -23,7 +23,20 @@ class LoginScene extends React.Component {
           <Text style={styles.already}>Dont have an account?</Text>
           <Text style={styles.signin} onPress={()=>Actions.register({type: 'replace'})}>Register</Text>
         </View>
-      </View>
+      <SocialIcon
+          title="Sign In With Facebook"
+          button
+          raised={true}
+          type="facebook"
+          onPress={()=> socialLogin("fb")}
+        />
+      <SocialIcon
+          title="Sign In  Google"
+          button
+          type="google-plus-official"
+          onPress={()=> socialLogin("google")}
+        />
+        </View>
     );
   }
 }
@@ -48,7 +61,8 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     paddingBottom: 15,
     paddingLeft: 100,
-    paddingRight: 100
+    paddingRight: 100,
+    backgroundColor: '#007ee5'
   },
   already: {
     color: '#666',

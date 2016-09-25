@@ -1,6 +1,6 @@
 import axios from 'axios';
 import * as types from '../constants/actionTypes';
-import { ToastAndroid } from 'react-native';
+import { ToastAndroid, AsyncStorage } from 'react-native';
 import {beginAjaxCall, ajaxCallError} from './ajaxstatusActions';
 import {userInfo} from './userActions';
 import  ROOT_URL from '../baseurl';
@@ -39,4 +39,9 @@ export function signupUser(name,  email, password) {
         ToastAndroid.show(response.response.data.error, ToastAndroid.LONG)
       });
   };
+}
+
+export function signoutUser() {
+  AsyncStorage.removeItem('Docstash');
+  return { type: types.UNAUTH_USER_SUCCESS };
 }

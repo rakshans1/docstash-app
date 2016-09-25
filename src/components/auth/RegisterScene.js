@@ -1,6 +1,6 @@
 import React from 'react';
 import {  StatusBar,StyleSheet, Text, View } from 'react-native';
-import { FormLabel, FormInput, Button } from 'react-native-elements';
+import { FormLabel, FormInput, Button, SocialIcon } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
 import LoadingIndicator from '../LoadingIndicator';
 
@@ -10,7 +10,7 @@ class RegisterScene extends React.Component {
     StatusBar.setBackgroundColor('#0476D3', true);
   }
   render () {
-     const { name,email,password,passwordConfirmation,onFieldChange, registerUser, loading } = this.props;
+     const { name,email,password,passwordConfirmation,onFieldChange, registerUser, socialLogin, loading } = this.props;
     return (
       <View style={styles.container}>
       {loading > 0 && <LoadingIndicator />}
@@ -27,6 +27,19 @@ class RegisterScene extends React.Component {
           <Text style={styles.already}>Already have an account?</Text>
           <Text style={styles.signin} onPress={()=>Actions.login({type: 'replace'})}>Sign in</Text>
         </View>
+        <SocialIcon
+            title="Sign Up With Facebook"
+            button
+            raised={true}
+            type="facebook"
+            onPress={()=> socialLogin("fb")}
+          />
+        <SocialIcon
+            title="Sign Up with Google"
+            button
+            type="google-plus-official"
+            onPress={()=> socialLogin("google")}
+          />
       </View>
     );
   }
@@ -52,14 +65,15 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     paddingBottom: 15,
     paddingLeft: 100,
-    paddingRight: 100
+    paddingRight: 100,
+    backgroundColor: '#007ee5'
   },
   already: {
     color: '#666',
     fontSize: 15,
     fontWeight: '300',
     textAlign: 'center',
-    marginBottom: 50
+    marginBottom: 20
   },
   inline: {
     flexDirection: 'row',

@@ -5,6 +5,7 @@ import devTools from 'remote-redux-devtools';
 import createLogger from 'redux-logger';
 import * as storage from 'redux-storage'
 import createEngine from 'redux-storage-engine-reactnativeasyncstorage';
+import reduxStorageActions from '../constants/reduxstorage';
 
 const logger = createLogger();
 
@@ -12,7 +13,7 @@ const logger = createLogger();
 export default function configureStore(onComplete) {
   const rootReducer = storage.reducer(reducers);
   const engine = createEngine('Docstash');
-  const storeMiddleware = storage.createMiddleware(engine);
+  const storeMiddleware = storage.createMiddleware(engine, reduxStorageActions);
 
   let store =  createStore(
     rootReducer,

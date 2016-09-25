@@ -7,7 +7,7 @@ class Library extends React.Component {
       <View>
         <Text style={styles.container}>Docstash New Version Available</Text>
         <Text style={{color: 'blue', textAlign: 'center', fontSize: 20 }}
-              onPress={() => Linking.openURL('http://google.com')}>Download Here</Text>
+              onPress={() => Linking.openURL('https://github.com/rakshans1/docstash-app/releases/download/v2.0.0/Docstash-v2.0.apk')}>Download Here</Text>
       </View>
     );
   }

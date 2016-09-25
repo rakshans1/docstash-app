@@ -2,7 +2,7 @@ import React, { PropTypes} from 'react';
 import LoginScene from '../../components/auth/LoginScene';
 import { connect } from 'react-redux';
 import { signinUser } from '../../actions/authActions';
-import { ToastAndroid } from 'react-native';
+import { ToastAndroid, Linking } from 'react-native';
 
 class Login extends React.Component {
   constructor(props) {
@@ -13,6 +13,7 @@ class Login extends React.Component {
     };
     this.onFieldChange  = this.onFieldChange.bind(this);
     this.validateEmail = this.validateEmail.bind(this);
+    this.socialLogin  = this.socialLogin.bind(this);
     this.loginUser = this.loginUser.bind(this);
   }
 
@@ -38,6 +39,14 @@ class Login extends React.Component {
     }
   }
 
+  socialLogin(auth) {
+    if (auth === "fb") {
+      Linking.openURL("https://docstash-server.herokuapp.com/auth/facebook/mobile");
+    } else {
+      Linking.openURL("https://docstash-server.herokuapp.com/auth/google/mobile");
+    }
+  }
+
   render() {
     const { loading } = this.props;
     return (
@@ -45,6 +54,7 @@ class Login extends React.Component {
         {...this.state}
         loginUser={this.loginUser}
         onFieldChange={this.onFieldChange}
+        socialLogin={this.socialLogin}
         loading={loading}
       />
     );

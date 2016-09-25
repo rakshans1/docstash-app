@@ -1,5 +1,5 @@
 import React from 'react';
-import { StatusBar,TouchableOpacity, StyleSheet, Text, View,  } from 'react-native';
+import { StatusBar,TouchableOpacity, StyleSheet, Text, View, Linking } from 'react-native';
 import { Button } from 'react-native-elements'
 import { Actions } from 'react-native-router-flux';
 
@@ -59,7 +59,8 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     paddingBottom: 15,
     paddingLeft: 100,
-    paddingRight: 100
+    paddingRight: 100,
+    backgroundColor: '#007ee5'
   }
 });
 

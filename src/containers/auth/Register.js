@@ -2,7 +2,7 @@ import React, { PropTypes} from 'react';
 import RegisterScene from '../../components/auth/RegisterScene';
 import { connect } from 'react-redux';
 import { signupUser } from '../../actions/authActions';
-import { ToastAndroid } from 'react-native';
+import { ToastAndroid, Linking } from 'react-native';
 
 class Register extends React.Component {
   constructor(props) {
@@ -15,6 +15,7 @@ class Register extends React.Component {
     };
     this.onFieldChange  = this.onFieldChange.bind(this);
     this.registerUser  = this.registerUser.bind(this);
+    this.socialLogin  = this.socialLogin.bind(this);
     this.validateEmail = this.validateEmail.bind(this);
   }
   validateEmail(event) {
@@ -40,6 +41,18 @@ class Register extends React.Component {
     }
   }
 
+
+
+  socialLogin(auth) {
+    if (auth === "fb") {
+      Linking.openURL("https://docstash-server.herokuapp.com/auth/facebook/mobile");
+    } else {
+      Linking.openURL("https://docstash-server.herokuapp.com/auth/google/mobile");
+    }
+  }
+
+
+
   render() {
     const { loading } = this.props;
     return (
@@ -47,6 +60,7 @@ class Register extends React.Component {
         {...this.state}
         onFieldChange={this.onFieldChange}
         registerUser={this.registerUser}
+        socialLogin={this.socialLogin}
         loading={loading}
       />
     );
