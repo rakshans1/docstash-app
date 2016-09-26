@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 class NavigationDrawer extends React.Component {
   render() {
-    const children = this.props.navigationState.children;
+    const {children} = this.props.navigationState;
     return (
       <Drawer
         ref="navigation"

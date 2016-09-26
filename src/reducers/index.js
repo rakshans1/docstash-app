@@ -7,12 +7,12 @@ import user from './userReducer';
 import shortnerReducer from './shortnerReducer';
 
 const rootReducer = combineReducers({
-  auth: authReducer,
-  pendingTasks,
-  notification: notification,
-  modal: modalReducer,
-  user: user,
-  shortner: shortnerReducer
+    auth: authReducer,
+    pendingTasks,
+    notification: notification,
+    modal: modalReducer,
+    user: user,
+    shortner: shortnerReducer
 });
 
 export default rootReducer;
